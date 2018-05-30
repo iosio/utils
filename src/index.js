@@ -38,12 +38,12 @@ export {
 
 export {
     deepClone,
-} from 'misc';
+} from './misc';
 
 export {
     idgen,
     uniqueID,
-} from 'number_generation';
+} from './number_generation';
 
 export {
     tryParse,
@@ -54,7 +54,7 @@ export {
     textReplacer,
     hasWord,
     numbersOnly,
-} from 'string_manipulation';
+} from './string_manipulation';
 
 export {
     toString,
@@ -70,4 +70,4 @@ export {
     isRegexp,
     isDate,
     isTruthy
-} from 'type_checks';
+} from './type_checks';
