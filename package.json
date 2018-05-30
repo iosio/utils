@@ -1,6 +1,6 @@
 {
   "name": "@iosio/utils",
-  "version": "0.0.0",
+  "version": "1.0.5",
   "description": "A collection of helpful JavaScript utility functions",
   "main": "lib/index.js",
   "scripts": {
@@ -13,6 +13,10 @@
     "utilities",
     "helper-functions"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iosio/utils.git"
+  },
   "author": "iosio",
   "license": "ISC",
   "devDependencies": {
