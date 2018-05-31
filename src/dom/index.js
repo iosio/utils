@@ -1,5 +1,5 @@
 export {
-    domReady,
+    // domReady,
     loadLink,
     loadScript,
 } from './loaders'

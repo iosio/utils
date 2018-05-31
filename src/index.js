@@ -74,7 +74,7 @@ export {
 
 export {
     /*loaders */
-    domReady,
+    // domReady,
     loadLink,
     loadScript,
 
