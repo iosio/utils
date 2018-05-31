@@ -78,7 +78,7 @@ export {
     loadLink,
     loadScript,
 
-    /* lock scrolling */
+    /* other dom */
     noScroll,
 
 } from './dom';
