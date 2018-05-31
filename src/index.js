@@ -56,6 +56,11 @@ export {
     numbersOnly,
 } from './string_manipulation';
 
+
+export {
+    sortObjArrByDateTime,
+} from './time';
+
 export {
     toString,
     typeOf,
