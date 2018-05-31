@@ -7,6 +7,7 @@ import moment from 'moment';
  * @param {Boolean} reverse - option to reverse the order
  * @returns {Array} - sorted array
  */
+
 export const sortObjArrByDateTime = (arr, prop, reverse) => {
 
     return arr.sort((a, b) => {
