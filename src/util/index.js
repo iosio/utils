@@ -1,13 +1,11 @@
 
+export {hex2rgba} from './color';
 export {
-    /* color */
-    hex2rgba,
-
-    /* comparisons */
     objEquivalent_deep,
-    closeEnough,
+    closeEnough
+} from './comparisons';
 
-    /* crud operations */
+export {
     removeItemFromArray,
     removeItemFromArrayByIndex,
     removeItemFromObjArrById,
@@ -16,32 +14,38 @@ export {
     updateItemInObjArrById,
     searchInObj,
     searchInObj_update,
+} from './crud_operations';
 
-    /* empty checks */
+export {
     objectIsEmpty,
     arrayIsEmpty,
     isEmpty,
+} from './empty_checks';
 
-    /* filters */
+export {
     filterObjArrByProp,
     filterArray,
     sortOrderOfObjArr,
     uniquesInArray,
     itemsInArray1NotInArray2,
+} from './filters';
 
-    /* has checks */
+export {
     objectHasProp,
     isInArray,
     hasDupsInObjArr_onProp,
+} from './has_checks';
 
-    /* misc */
+export {
     deepClone,
+} from './misc';
 
-    /* number generation */
+export {
     idgen,
     uniqueID,
+} from './number_generation';
 
-    /* string manipulation */
+export {
     tryParse,
     allCaps,
     capFirstLet,
@@ -50,11 +54,14 @@ export {
     textReplacer,
     hasWord,
     numbersOnly,
+} from './string_manipulation';
 
-    /* time */
+
+export {
     sortObjArrByDateTime,
+} from './time';
 
-    /* type checks */
+export {
     toString,
     typeOf,
     isNaN,
@@ -68,17 +75,4 @@ export {
     isRegexp,
     isDate,
     isTruthy
-
-} from './util';
-
-
-export {
-    /*loaders */
-    domReady,
-    loadLink,
-    loadScript,
-
-    /* lock scrolling */
-    noScroll,
-
-} from './dom';
+} from './type_checks';

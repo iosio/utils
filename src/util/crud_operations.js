@@ -120,7 +120,7 @@ export const updateItemInObjArrById = (arr, match_prop, id, update_to) => {
  * @param {String|Number|Boolean|NaN} ignore - values to ignore
  * @returns {Object} - the single updated object - use searchInObject_update to get the entire object/array back
  */
-const searchInObj = (theObject, match_prop, seeking, update, ignore) => {
+export const searchInObj = (theObject, match_prop, seeking, update, ignore) => {
     let result = null;
     if (theObject instanceof Array) {
         for (let i = 0; i < theObject.length; i++) {
