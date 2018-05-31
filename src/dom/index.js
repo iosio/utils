@@ -5,4 +5,4 @@ export {
 } from './loaders'
 export {
     noScroll,
-} from 'noScroll';
+} from './noScroll';
