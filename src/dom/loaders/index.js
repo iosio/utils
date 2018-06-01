@@ -1,11 +1,11 @@
-
-export const domReady = (cb) => {
-
-    import('./docReady.js').then(() => {
-        window.docReady(cb);
-    });
-
-};
+//
+// export const domReady = (cb) => {
+//
+//     import('./docReady.js').then(() => {
+//         window.docReady(cb);
+//     });
+//
+// };
 
 export function loadScript( url, cb ) {
     let script = document.createElement( "script" );
