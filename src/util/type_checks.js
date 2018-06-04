@@ -94,10 +94,56 @@ export const isRegexp = (val) => typeOf(val) === 'regexp';
  */
 export const isDate = (val) => typeOf(val) === 'date';
 
+
+/**
+ * determines if a value is a boolean
+ * @param {*} val - any val
+ * @returns {boolean} - true if val is a boolean
+ */
+export const isBoolean = (val) => typeOf(val) === 'boolean';
+
 /**
  * determines if a value is truthy
  * @param {*} val - any val
  * @returns {boolean} - true if val is truthy
  */
 export const isTruthy = (val) => !isUndefined(val) && !!val;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
