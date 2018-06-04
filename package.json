@@ -1,6 +1,6 @@
 {
   "name": "@iosio/utils",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "description": "A collection of helpful JavaScript utility functions",
   "main": "lib/index.js",
   "scripts": {
