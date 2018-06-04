@@ -74,5 +74,6 @@ export {
     isFunction,
     isRegexp,
     isDate,
-    isTruthy
+    isTruthy,
+    isBoolean,
 } from './type_checks';

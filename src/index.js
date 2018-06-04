@@ -67,7 +67,8 @@ export {
     isFunction,
     isRegexp,
     isDate,
-    isTruthy
+    isTruthy,
+    isBoolean,
 
 } from './util';
 
