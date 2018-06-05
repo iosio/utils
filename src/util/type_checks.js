@@ -9,15 +9,16 @@
 export const toString = (thing) => Object.prototype.toString.call(thing);
 
 /**
- * tells what kind of primitive it is
- * @param {*} thing - primitive
+ * tells what type it is. only checks shallow. wont work with NaN
+ * @param {*} thing - thing to check
  * @returns {string} - string definition of the primitive
  */
-export const typeOf = (thing) => {
+const typeOf_shallow = (thing) => {
     const stringified = toString(thing);
     const type = stringified.split(' ')[1].slice(0, -1);
     return type.toLowerCase();
 };
+
 
 /**
  * determines if a primitive is isNaN
@@ -30,6 +31,22 @@ export const isNaN = function (val) {
     let n = Number(val);
     return n !== n;	//eslint-disable-line
 };
+
+
+/**
+ * tells what type it is.
+ * @param {*} thing - thing to check
+ * @returns {string} - string definition of the primitive
+ */
+export const typeOf = (thing) => {
+    if(isNaN(thing)){
+        return 'NaN';
+    }else{
+        return typeOf_shallow(thing);
+    }
+};
+
+
 
 /**
  * determines if a value is undefined
