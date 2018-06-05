@@ -40,7 +40,7 @@ export const isNaN = function (val) {
  */
 const typeOf = (thing) => {
     if(isNaN(thing) && typeOf_shallow(thing) === 'number'){
-        return 'NaN';
+        return 'nan';
     }else{
         return typeOf_shallow(thing);
     }
