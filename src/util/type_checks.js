@@ -38,7 +38,7 @@ export const isNaN = function (val) {
  * @param {*} thing - thing to check
  * @returns {string} - string definition of the primitive
  */
-const typeOf = (thing) => {
+export const typeOf = (thing) => {
     if(isNaN(thing) && typeOf_shallow(thing) === 'number'){
         return 'nan';
     }else{
