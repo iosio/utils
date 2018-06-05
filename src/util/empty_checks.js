@@ -21,14 +21,9 @@ export const objectIsEmpty = (obj) => {
         return;
     }
 
-    let ensuredObject = deepClone(obj);
+    let keys = Object.keys(obj);
 
-    for (let prop in ensuredObject) {
-        if (ensuredObject.hasOwnProperty(prop)) {
-            return false;
-        }
-    }
-    return JSON.stringify(ensuredObject) === JSON.stringify({});
+    return keys.length < 1
 };
 
 /**
