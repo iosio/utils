@@ -2,7 +2,6 @@
 import {
     isObject,
     isArray,
-    isArray,
     isUndefined,
     typeOf,
     isBoolean,
