@@ -4,7 +4,7 @@ import {
     typeOf,
     isUndefined
 } from "./type_checks";
-import {objectIsEmpty} from "./empty_checks";
+import {objectIsEmpty, isEmpty} from "./empty_checks";
 
 const validate_args = (obj_to_validate, schema) => {
     let errors = [];
