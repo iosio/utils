@@ -1,5 +1,2 @@
-const {quicky} = require('../_build-scripts');
+const {quicky} = require('../index.js');
 quicky();
-
-
-

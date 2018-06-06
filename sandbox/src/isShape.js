@@ -1,21 +1,17 @@
-
 import {
     isObject,
+    objectIsEmpty,
+    isString,
     isArray,
-    isArray,
-    isUndefined,
+    isEmpty,
     typeOf,
+    isUndefined,
+    isInArray,
     isBoolean,
     isFunction,
+    closeEnough,
     isNumber,
-} from "./type_checks";
-import {closeEnough} from "./comparisons";
-import { isInArray} from "./has_checks";
-import {
-    objectIsEmpty,
-    isEmpty,
-} from "./empty_checks";
-
+} from "../../dist";
 
 
 export const type_map = {
