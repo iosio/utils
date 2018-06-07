@@ -1,5 +1,5 @@
 import {type_map, isShape} from './isShape'
-import {isString} from "../../dist";
+import {isString} from "./type_checks";
 
 let  log_this = '';
 export const log = (it) => {
@@ -19,7 +19,6 @@ const number_obj = {
     num_pos1: 1,
     num_pos: 100,
     num_neg: -3,
-
     num_between: 5,
     num_greater: 5,
     num_less: 5,
@@ -297,16 +296,8 @@ const object_schema = {
     },
 };
 
-function custom(val){
-    return val === 'abc';
-}
-
 const custom_schema = {
     custom: (val) => val === 'abc'
-};
-
-const custom_schema_print = {
-    custom: custom.toString()
 };
 
 const all_schema_map = {
@@ -327,39 +318,22 @@ const all_schema_map = {
 };
 
 const all_schema = {
+    ...one_of_schema,
+    ...any_schema,
+    ...undefined_schema,
+    ...null_schema,
+    ...nan_schema,
+    ...number_schema,
+    ...regexp_schema,
+    ...boolean_schema,
+    ...date_schema,
+    ...string_schema,
+    ...function_schema,
+    ...array_schema,
+    ...object_schema,
     ...custom_schema,
-    ...one_of_schema,
-    ...any_schema,
-    ...undefined_schema,
-    ...null_schema,
-    ...nan_schema,
-    ...number_schema,
-    ...regexp_schema,
-    ...boolean_schema,
-    ...date_schema,
-    ...string_schema,
-    ...function_schema,
-    ...array_schema,
-    ...object_schema,
-
 };
-const all_schema_print = {
 
-    ...one_of_schema,
-    ...any_schema,
-    ...undefined_schema,
-    ...null_schema,
-    ...nan_schema,
-    ...number_schema,
-    ...regexp_schema,
-    ...boolean_schema,
-    ...date_schema,
-    ...string_schema,
-    ...function_schema,
-    ...array_schema,
-    ...object_schema,
-    ...custom_schema_print,
-};
 
 //
 // const Is = function () {
@@ -396,8 +370,7 @@ const all_schema_print = {
 //
 // const is = new Is();
 
-
-export const tester = () => {
+const tester = () => {
 
     return new Promise((resolve, reject) => {
 
@@ -405,11 +378,6 @@ export const tester = () => {
         console.log('************************************************** \n\n\n\n\n ');
 
         let maps_valid = false;
-
-        Object.keys(type_map).forEach((key)=>{
-           // log(key);
-        });
-
 
         const mapsValid = (verbose) => {
 
@@ -475,13 +443,12 @@ export const tester = () => {
             log('big check pass: ' + big_check_valid);
         };
         //
-        // if(mapsValid()){
-        //     if(check_each()){
-        //         checkBigObject();
-        //     }
-        // }
+        if(mapsValid()){
+            if(check_each()){
+                checkBigObject();
+            }
+        }
 
-        log(JSON.stringify(all_schema_print,null, 4))
         console.log(log_this);
 
         resolve()

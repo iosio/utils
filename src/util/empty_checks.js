@@ -1,5 +1,3 @@
-
-import {deepClone} from "./misc";
 import {isArray} from "./type_checks";
 import {isObject} from "./type_checks";
 import {isTruthy} from "./type_checks";
@@ -8,7 +6,6 @@ import {isTruthy} from "./type_checks";
     -------- IS EMPTY CHECKS --------------
  */
 
-// import {deepClone, isArray, isObject, isTruthy} from "./index";
 
 /**
  * checks if an object has any properties /is empty
@@ -20,9 +17,7 @@ export const objectIsEmpty = (obj) => {
         console.error('must pass object to objectIsEmpty check');
         return;
     }
-
     let keys = Object.keys(obj);
-
     return keys.length < 1
 };
 

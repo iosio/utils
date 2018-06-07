@@ -1,16 +1,16 @@
 (function (global, factory) {
     if (typeof define === "function" && define.amd) {
-        define(["exports", "./misc", "./type_checks"], factory);
+        define(["exports", "./type_checks"], factory);
     } else if (typeof exports !== "undefined") {
-        factory(exports, require("./misc"), require("./type_checks"));
+        factory(exports, require("./type_checks"));
     } else {
         var mod = {
             exports: {}
         };
-        factory(mod.exports, global.misc, global.type_checks);
+        factory(mod.exports, global.type_checks);
         global.empty_checks = mod.exports;
     }
-})(this, function (exports, _misc, _type_checks) {
+})(this, function (exports, _type_checks) {
     "use strict";
 
     Object.defineProperty(exports, "__esModule", {
@@ -23,8 +23,6 @@
         -------- IS EMPTY CHECKS --------------
      */
 
-    // import {deepClone, isArray, isObject, isTruthy} from "./index";
-
     /**
      * checks if an object has any properties /is empty
      * @param {Object} obj - object to check for emptiness
@@ -35,9 +33,7 @@
             console.error('must pass object to objectIsEmpty check');
             return;
         }
-
         var keys = Object.keys(obj);
-
         return keys.length < 1;
     };
 

@@ -130,12 +130,6 @@
             return _filters.itemsInArray1NotInArray2;
         }
     });
-    Object.defineProperty(exports, 'objectHasProp', {
-        enumerable: true,
-        get: function () {
-            return _has_checks.objectHasProp;
-        }
-    });
     Object.defineProperty(exports, 'isInArray', {
         enumerable: true,
         get: function () {

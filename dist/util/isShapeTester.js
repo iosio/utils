@@ -1,28 +1,28 @@
 (function (global, factory) {
     if (typeof define === "function" && define.amd) {
-        define(['exports', './isShape', '../../dist'], factory);
+        define(['exports', './isShape', './type_checks'], factory);
     } else if (typeof exports !== "undefined") {
-        factory(exports, require('./isShape'), require('../../dist'));
+        factory(exports, require('./isShape'), require('./type_checks'));
     } else {
         var mod = {
             exports: {}
         };
-        factory(mod.exports, global.isShape, global.dist);
-        global.index = mod.exports;
+        factory(mod.exports, global.isShape, global.type_checks);
+        global.isShapeTester = mod.exports;
     }
-})(this, function (exports, _isShape3, _dist) {
+})(this, function (exports, _isShape3, _type_checks) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    exports.tester = exports.log = undefined;
+    exports.log = undefined;
 
 
     var log_this = '';
     var log = exports.log = function log(it) {
         var val = void 0;
-        if (!(0, _dist.isString)(it)) {
+        if (!(0, _type_checks.isString)(it)) {
             val = JSON.stringify(it, null, 4);
         } else {
             val = it;
@@ -37,7 +37,6 @@
         num_pos1: 1,
         num_pos: 100,
         num_neg: -3,
-
         num_between: 5,
         num_greater: 5,
         num_less: 5,
@@ -294,18 +293,10 @@
         }
     };
 
-    function custom(val) {
-        return val === 'abc';
-    }
-
     var custom_schema = {
         custom: function custom(val) {
             return val === 'abc';
         }
-    };
-
-    var custom_schema_print = {
-        custom: custom.toString()
     };
 
     var all_schema_map = {
@@ -325,8 +316,7 @@
         custom_schema: custom_schema
     };
 
-    var all_schema = Object.assign({}, custom_schema, one_of_schema, any_schema, undefined_schema, null_schema, nan_schema, number_schema, regexp_schema, boolean_schema, date_schema, string_schema, function_schema, array_schema, object_schema);
-    var all_schema_print = Object.assign({}, one_of_schema, any_schema, undefined_schema, null_schema, nan_schema, number_schema, regexp_schema, boolean_schema, date_schema, string_schema, function_schema, array_schema, object_schema, custom_schema_print);
+    var all_schema = Object.assign({}, one_of_schema, any_schema, undefined_schema, null_schema, nan_schema, number_schema, regexp_schema, boolean_schema, date_schema, string_schema, function_schema, array_schema, object_schema, custom_schema);
 
     //
     // const Is = function () {
@@ -363,18 +353,13 @@
     //
     // const is = new Is();
 
-
-    var tester = exports.tester = function tester() {
+    var tester = function tester() {
 
         return new Promise(function (resolve, reject) {
 
             console.log('************************************************** \n\n\n\n\n ');
 
             var maps_valid = false;
-
-            Object.keys(_isShape3.type_map).forEach(function (key) {
-                // log(key);
-            });
 
             var mapsValid = function mapsValid(verbose) {
 
@@ -442,13 +427,12 @@
                 log('big check pass: ' + big_check_valid);
             };
             //
-            // if(mapsValid()){
-            //     if(check_each()){
-            //         checkBigObject();
-            //     }
-            // }
+            if (mapsValid()) {
+                if (check_each()) {
+                    checkBigObject();
+                }
+            }
 
-            log(JSON.stringify(all_schema_print, null, 4));
             console.log(log_this);
 
             resolve();

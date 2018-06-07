@@ -17,6 +17,12 @@
         value: true
     });
     exports.isShape = exports.type_map = undefined;
+
+
+    /**
+     * for verifying correct usage
+     * @type {{undefined: string, number: string, nan: string, null: string, regexp: string, boolean: string, date: string, string: string, function: string, array: string, object: string, any: string, custom: string, one_of: string}}
+     */
     var type_map = exports.type_map = {
         'undefined': 'undefined',
         'number': 'number',
@@ -34,6 +40,12 @@
         'one_of': 'one_of'
     };
 
+    /**
+     * validates that the correct arguments are passed to isShape
+     * @param {object} obj_to_validate - object to validate
+     * @param {object} schema - object to validate against
+     * @returns {{ok: boolean, errors: Array}}
+     */
     var validate_args = function validate_args(obj_to_validate, schema) {
         var errors = [];
         var ok = true;
@@ -72,10 +84,227 @@
         return { ok: ok, errors: errors };
     };
 
+    /**
+     *  * object schema validator *
+     * ----- example schema -----
+    
+     - required : if the object must have that property
+    
+    
+     {
+     "one_of": {
+         "type": "one_of",   // value on this property should be an emum
+         "required": true,
+         "one_of": [         // required array for one_of
+             "123",
+             "abc",
+             "xyz"
+         ]
+     },
+     "any": {
+         "type": "any",      // any type will pass
+         "required": true
+     },
+     "not_defined": {
+         "type": "undefined", // TODO - need to verify this one
+         "required": true
+     },
+     "nully": {
+         "type": "null",    //verifies it is type null
+         "required": true
+     },
+     "num_not": {
+         "type": "nan",      //verifies it is type NaN or not a number
+         "required": true
+     },
+     "num_zero": {
+         "type": "number",  //verifies it is type number (including 0 and negatives)
+         "required": true
+     },
+     "num_pos1": {
+         "type": "number",
+         "required": true
+     },
+     "num_pos": {
+         "type": "number",
+         "required": true
+     },
+     "num_neg": {
+         "type": "number",
+         "required": true
+     },
+     "num_between": {       // verifies a number is between a min and max number value
+         "type": "number",
+         "min": 1,
+         "max": 10,
+         "required": true
+     },
+     "num_greater": {       // verifies it is greater than a minimum number value
+         "type": "number",
+         "min": 1,
+         "required": true
+     },
+     "num_less": {          // verifies it is less than a maximum number value
+         "type": "number",
+         "max": 6,
+         "required": true
+     },
+     "num_close_to": {      // verifies a number is within a range
+         "type": "number",
+         "close_to": {
+             "target": 5,
+             "variance": 10
+         },
+         "required": true
+     },
+     "regexp": {
+         "type": "regexp",   // verifies it is type regexp
+         "required": true
+     },
+     "bool_false": {
+         "type": "boolean", // verifies it is type boolean
+         "required": true
+     },
+     "bool_true": {
+         "type": "boolean",
+         "required": true
+     },
+     "date": {
+         "type": "date",  // TODO: may need a custom validator for this
+         "required": true
+     },
+     "string": {
+         "type": "string", // verifies it is type string -- even empty string
+         "required": true
+     },
+     "string_empty": {
+         "type": "string",
+         "required": true
+     },
+     "func_anonymous": {
+         "type": "function", // verifies it is type function
+         "required": true
+     },
+     "func_named": {
+         "type": "function",
+         "required": true
+     },
+     "array_empty": {
+         "type": "array", // verifies it is type array
+         "required": true
+     },
+     "array_of_strings": {
+         "type": "array", // verifies it is type array of type. can pass shape to of prop
+         "required": true,
+         "of": {
+             "type": "string"
+         }
+     },
+     "object_empty": {
+         "type": "object", // verifies it is type object. can assign definition to shape prop
+         "required": true
+     },
+     "object_simple": {
+         "type": "object",
+         "shape": {
+             "hello": {
+                 "type": "string",
+                 "required": true
+             }
+         }
+     },
+     "object_nested": {
+         "type": "object",      // verifies deep nested objects as well
+         "required": true,
+         "shape": {
+             "obj": {
+                 "type": "object",
+                 "required": true
+             },
+             "arr": {
+                 "type": "array",
+                 "required": true,
+                 "of": {
+                     "type": "object",
+                     "shape": {
+                         "some": {
+                             "type": "string"
+                         },
+                         "derp": {
+                             "type": "array"
+                         }
+                     }
+                 }
+             }
+         }
+     },
+     "custom": function custom(val){     // custom validator function can be passed. must return boolean
+        return val === "abc";
+     }
+    }
+     ---------- example object to verify -----------
+    
+     {
+        "num_zero": 0,
+        "num_pos1": 1,
+        "num_pos": 100,
+        "num_neg": -3,
+        "num_between": 5,
+        "num_greater": 5,
+        "num_less": 5,
+        "num_close_to": 5,
+        "one_of": "123",
+        "any": "asdf",
+        "nully": null,
+        "num_not": null,
+        "regexp": /ab+c/,
+        "bool_false": false,
+        "bool_true": true,
+        "date": new Date(),
+        "string": "stringy",
+        "string_empty": "",
+        "array_empty": [],
+        "array_of_strings": [
+            "a",
+            "b",
+            "c",
+            "d"
+        ],
+        "object_empty": {},
+        "object_simple": {
+            "hello": "world"
+        },
+        "object_nested": {
+            "obj": {
+                "derp": "hello"
+            },
+            "arr": [
+                {
+                    "some": "data",
+                    "derp": []
+                },
+                {
+                    "some": "more data",
+                    "derp": []
+                }
+            ]
+        },
+        "custom": "abc"
+    }
+    
+    
+     * @param {object} obj - object to validate
+     * @param {object} schema - object to validate against
+     * @param {boolean} verbose - true to console log validations
+     * @param {function|boolean} log - function to stringify results
+     * @returns {object} - {ok: boolean, errors: array, warnings: array}
+     */
     var isShape = exports.isShape = function isShape(obj, schema, verbose, log) {
 
         if (!log && verbose) {
-            log = function log() {};
+            log = function log() {
+                return 'asdf';
+            };
             console.log('log formatter not provided');
         }
 
