@@ -4,13 +4,13 @@
  * @param {function} cb  - callback
  * @returns {undefined} - returns nothing
  */
-export const domReady = (cb) => {
-
-    import('./docReady.js').then(() => {
-        window.docReady(cb);
-    });
-
-};
+// export const domReady = (cb) => {
+//
+//     import('./docReady.js').then(() => {
+//         window.docReady(cb);
+//     });
+//
+// };
 
 /**
  * appends a script element to the dom to load a script
