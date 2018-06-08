@@ -565,7 +565,7 @@ export const objectOf = (evaluate, schema) =>{
 
             if(typeOf(evaluate[key]) === schema.type){
                 if(isObject(schema.shape)){
-                    console.log('is object', evaluate[key], schema.shape)
+                    // console.log('is object', evaluate[key], schema.shape)
 
                     let results = isShape(evaluate[key], schema.shape);
 

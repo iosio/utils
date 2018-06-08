@@ -562,7 +562,7 @@
 
                 if ((0, _type_checks.typeOf)(evaluate[key]) === schema.type) {
                     if ((0, _type_checks.isObject)(schema.shape)) {
-                        console.log('is object', evaluate[key], schema.shape);
+                        // console.log('is object', evaluate[key], schema.shape)
 
                         var results = isShape(evaluate[key], schema.shape);
 
