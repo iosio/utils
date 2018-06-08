@@ -18,6 +18,20 @@
     });
     exports.tester = exports.log = undefined;
 
+    function _defineProperty(obj, key, value) {
+        if (key in obj) {
+            Object.defineProperty(obj, key, {
+                value: value,
+                enumerable: true,
+                configurable: true,
+                writable: true
+            });
+        } else {
+            obj[key] = value;
+        }
+
+        return obj;
+    }
 
     var log_this = '';
     var log = exports.log = function log(it) {
@@ -448,7 +462,11 @@
             //     }
             // }
 
-            log(JSON.stringify(all_schema_print, null, 4));
+            // log(JSON.stringify(all_schema_print,null, 4))
+
+
+            console.log((0, _isShape3.objectOf)(_defineProperty({ a: '123' }, 'a', 'asdf'), { type: 'string' }));
+
             console.log(log_this);
 
             resolve();

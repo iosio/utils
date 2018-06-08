@@ -18,15 +18,25 @@
     });
     exports.loadScript = loadScript;
     exports.loadLink = loadLink;
-    //
-    // export const domReady = (cb) => {
-    //
-    //     import('./docReady.js').then(() => {
-    //         window.docReady(cb);
-    //     });
-    //
-    // };
+    /**
+     * loads dock ready script
+     * when doc is ready will execute the callback
+     * @param {function} cb  - callback
+     * @returns {undefined} - returns nothing
+     */
+    var domReady = exports.domReady = function domReady(cb) {
 
+        import('./docReady.js').then(function () {
+            window.docReady(cb);
+        });
+    };
+
+    /**
+     * appends a script element to the dom to load a script
+     * @param {string} url - url of source to load;
+     * @param {function} cb - function to call after load
+     * @returns {undefined} - returns nothing
+     */
     function loadScript(url, cb) {
         var script = document.createElement("script");
         script.type = "text/javascript";
@@ -49,6 +59,13 @@
         document.getElementsByTagName("head")[0].appendChild(script);
     }
 
+    /**
+     * appends a link element to the dom to load a script
+     * --- although es6 import() will do the same thing
+     * @param {string} url - url of source to load;
+     * @param {function} cb - function to call after load
+     * @returns {undefined} - returns nothing
+     */
     function loadLink(url, cb) {
         var link = document.createElement('link');
         link.rel = 'stylesheet';

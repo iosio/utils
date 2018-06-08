@@ -304,6 +304,18 @@
             return _isShape.isShape;
         }
     });
+    Object.defineProperty(exports, 'arrayOf', {
+        enumerable: true,
+        get: function () {
+            return _isShape.arrayOf;
+        }
+    });
+    Object.defineProperty(exports, 'objectOf', {
+        enumerable: true,
+        get: function () {
+            return _isShape.objectOf;
+        }
+    });
     Object.defineProperty(exports, 'loadLink', {
         enumerable: true,
         get: function () {

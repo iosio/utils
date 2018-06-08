@@ -1,4 +1,4 @@
-import {type_map, isShape} from './isShape'
+import {type_map, isShape, objectOf, arrayOf} from './isShape'
 import {isString} from "../../dist";
 
 let  log_this = '';
@@ -481,7 +481,14 @@ export const tester = () => {
         //     }
         // }
 
-        log(JSON.stringify(all_schema_print,null, 4))
+        // log(JSON.stringify(all_schema_print,null, 4))
+
+
+
+        console.log(objectOf({a: '123', a: 'asdf'}, {type: 'string'}));
+
+
+
         console.log(log_this);
 
         resolve()

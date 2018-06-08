@@ -72,6 +72,7 @@ const validate_args = (obj_to_validate, schema) => {
 };
 
 
+
 export const isShape = (obj, schema, verbose, log) => {
 
     if (!log && verbose) {
@@ -332,3 +333,60 @@ export const isShape = (obj, schema, verbose, log) => {
 
     return {ok, errors, warnings};
 };
+
+
+
+export const objectOf = (evaluate, schema) =>{
+
+    if(isObject(evaluate) && isObject(schema) && schema.type){
+        let pass = true;
+
+        Object.keys(evaluate).forEach((key)=>{
+
+            if(typeOf(evaluate[key]) === schema.type){
+                if(isObject(schema.shape)){
+                    console.log('is object', evaluate[key], schema.shape)
+
+                    let results = isShape(evaluate[key], schema.shape);
+
+                    if(!results.ok){
+                        pass = false;
+                    }
+                }
+
+            }else{
+                pass = false;
+            }
+        });
+
+        return pass;
+    }else{
+        return false;
+    }
+
+};
+
+export const arrayOf = (evaluate, schema) => {
+    if(isArray(evaluate) && isObject(schema) && schema.type){
+        let pass = true;
+        evaluate.forEach((key)=>{
+
+            if(typeOf(key) === schema.type){
+                if(isObject(schema.shape)){
+                    let results = isShape(key, schema.shape);
+                    if(!results.ok){
+                        pass = false;
+                    }
+                }
+
+            }else{
+                pass = false;
+            }
+        });
+
+        return pass;
+    }else{
+        return false;
+    }
+};
+

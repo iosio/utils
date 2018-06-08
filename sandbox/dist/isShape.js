@@ -16,7 +16,7 @@
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    exports.isShape = exports.type_map = undefined;
+    exports.arrayOf = exports.objectOf = exports.isShape = exports.type_map = undefined;
     var type_map = exports.type_map = {
         'undefined': 'undefined',
         'number': 'number',
@@ -322,5 +322,56 @@
         }
 
         return { ok: ok, errors: errors, warnings: warnings };
+    };
+
+    var objectOf = exports.objectOf = function objectOf(evaluate, schema) {
+
+        if ((0, _dist.isObject)(evaluate) && (0, _dist.isObject)(schema) && schema.type) {
+            var pass = true;
+
+            Object.keys(evaluate).forEach(function (key) {
+
+                if ((0, _dist.typeOf)(evaluate[key]) === schema.type) {
+                    if ((0, _dist.isObject)(schema.shape)) {
+                        console.log('is object', evaluate[key], schema.shape);
+
+                        var results = isShape(evaluate[key], schema.shape);
+
+                        if (!results.ok) {
+                            pass = false;
+                        }
+                    }
+                } else {
+                    pass = false;
+                }
+            });
+
+            return pass;
+        } else {
+            return false;
+        }
+    };
+
+    var arrayOf = exports.arrayOf = function arrayOf(evaluate, schema) {
+        if ((0, _dist.isArray)(evaluate) && (0, _dist.isObject)(schema) && schema.type) {
+            var pass = true;
+            evaluate.forEach(function (key) {
+
+                if ((0, _dist.typeOf)(key) === schema.type) {
+                    if ((0, _dist.isObject)(schema.shape)) {
+                        var results = isShape(key, schema.shape);
+                        if (!results.ok) {
+                            pass = false;
+                        }
+                    }
+                } else {
+                    pass = false;
+                }
+            });
+
+            return pass;
+        } else {
+            return false;
+        }
     };
 });

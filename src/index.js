@@ -79,6 +79,8 @@ export {
 
 export {
     isShape,
+    arrayOf,
+    objectOf,
 } from './util/isShape';
 
 export {
@@ -90,3 +92,4 @@ export {
 export {
     noScroll,
 } from './dom/noScroll';
+

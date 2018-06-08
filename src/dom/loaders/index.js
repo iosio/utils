@@ -1,12 +1,23 @@
-//
-// export const domReady = (cb) => {
-//
-//     import('./docReady.js').then(() => {
-//         window.docReady(cb);
-//     });
-//
-// };
+/**
+ * loads dock ready script
+ * when doc is ready will execute the callback
+ * @param {function} cb  - callback
+ * @returns {undefined} - returns nothing
+ */
+export const domReady = (cb) => {
 
+    import('./docReady.js').then(() => {
+        window.docReady(cb);
+    });
+
+};
+
+/**
+ * appends a script element to the dom to load a script
+ * @param {string} url - url of source to load;
+ * @param {function} cb - function to call after load
+ * @returns {undefined} - returns nothing
+ */
 export function loadScript( url, cb ) {
     let script = document.createElement( "script" );
     script.type = "text/javascript";
@@ -27,6 +38,13 @@ export function loadScript( url, cb ) {
     document.getElementsByTagName( "head" )[0].appendChild( script );
 }
 
+/**
+ * appends a link element to the dom to load a script
+ * --- although es6 import() will do the same thing
+ * @param {string} url - url of source to load;
+ * @param {function} cb - function to call after load
+ * @returns {undefined} - returns nothing
+ */
 export function loadLink( url, cb ) {
     let link = document.createElement('link');
     link.rel = 'stylesheet';
