@@ -15,6 +15,14 @@ export const idgen = () => {
     return oldId;
 };
 
+
+/**
+ * creates a date string and replaces spaces with dashes
+ * used for uniqueID
+ * @returns {string} - returns date string with dashes
+ */
+const dateStringForId = () => new Date().toString().split(" ").join("-");
+
 /**
  * random number generator used for genRando
  * @returns {String} - random char string
@@ -24,13 +32,6 @@ const s4 = () => {
         .toString(16)
         .substring(1);
 };
-
-/**
- * creates a date string and replaces spaces with dashes
- * used for uniqueID
- * @returns {string} - returns date string with dashes
- */
-const dateStringForId = () => new Date().toString().split(" ").join("-");
 
 /**
  * generates a ridiculously unique set of characters

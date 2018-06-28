@@ -517,7 +517,7 @@ export const isShape = (obj, schema, verbose, log) => {
 
             } else {
                 verbose && log('value for type prop is invalid');
-                erros.push('value for type prop is invalid')
+                errors.push('value for type prop is invalid')
             }
 
         }

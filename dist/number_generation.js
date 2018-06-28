@@ -34,20 +34,20 @@
   };
 
   /**
-   * random number generator used for genRando
-   * @returns {String} - random char string
-   */
-  var s4 = function s4() {
-    return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-  };
-
-  /**
    * creates a date string and replaces spaces with dashes
    * used for uniqueID
    * @returns {string} - returns date string with dashes
    */
   var dateStringForId = function dateStringForId() {
     return new Date().toString().split(" ").join("-");
+  };
+
+  /**
+   * random number generator used for genRando
+   * @returns {String} - random char string
+   */
+  var s4 = function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
   };
 
   /**
