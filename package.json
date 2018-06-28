@@ -2,7 +2,7 @@
   "name": "@iosio/utils",
   "version": "1.0.40",
   "description": "A collection of helpful JavaScript utility functions",
-  "main": "dist/index.js",
+  "main": "lib/index.js",
   "scripts": {
     "tester": "node sandbox/tester.js",
     "babel:sandbox": "cross-env BABEL_ENV=development babel sandbox/src --out-dir sandbox/dist && npm run tester",
