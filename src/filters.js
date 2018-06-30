@@ -75,6 +75,8 @@ export const sortOrderOfObjArr = (arr, objProp, descend) => {
 };
 
 
+
+
 /**
  * filters out duplicates in array of strings
  * @param {Array} arr - array to filter

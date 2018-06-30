@@ -1,24 +1,17 @@
 /*
     --------- TYPE CHECKS AND STUFF ---------
  */
-/**
- * helper for typeOf
- * @param {*} thing - primitive (string, obj, number...etc)
- * @returns {String} the string definition of the primitive (ex: [object Array] )
- */
-export const toString = (thing) => Object.prototype.toString.call(thing);
 
 /**
  * tells what type it is. only checks shallow. wont work with NaN
  * @param {*} thing - thing to check
  * @returns {string} - string definition of the primitive
  */
-const typeOf_shallow = (thing) => {
-    const stringified = toString(thing);
+export const typeOf_shallow = (thing) => {
+    const stringified = Object.prototype.toString.call(thing);
     const type = stringified.split(' ')[1].slice(0, -1);
     return type.toLowerCase();
 };
-
 
 /**
  * determines if a primitive is isNaN
@@ -32,9 +25,9 @@ export const isNaN = function (val) {
     return n !== n;	//eslint-disable-line
 };
 
-
 /**
  * tells what type it is.
+ * NaN is a number but also not a number so check for type number and NaN to return type nan
  * @param {*} thing - thing to check
  * @returns {string} - string definition of the primitive
  */
@@ -45,8 +38,6 @@ export const typeOf = (thing) => {
         return typeOf_shallow(thing);
     }
 };
-
-
 
 /**
  * determines if a value is undefined
@@ -126,6 +117,32 @@ export const isBoolean = (val) => typeOf(val) === 'boolean';
  */
 export const isTruthy = (val) => !isUndefined(val) && !!val;
 
+
+// export const isForSureNaN = (val) => {
+//     const defNotANumberChecks = [
+//         isUndefined,
+//         isNull,
+//         isObject,
+//         isArray,
+//         isString,
+//         isFunction,
+//         isRegexp,
+//         isDate,
+//         isBoolean,
+//         isNumber,
+//     ];
+//
+//     // let def_not = false;
+//     for (let i = 0; i < defNotANumberChecks.length; i++) {
+//         if (defNotANumberChecks[i](val)) {
+//            return  true
+//         }
+//     }
+//
+//     return isNaN(val);
+//
+//
+// };
 
 
 
