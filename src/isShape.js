@@ -7,6 +7,7 @@ import {
     isFunction,
     isNumber,
 } from "./type_checks";
+
 import {closeEnough} from "./comparisons";
 import {isInArray} from "./has_checks";
 import {
@@ -35,50 +36,7 @@ export const type_map = {
     'one_of': 'one_of',
 };
 
-/**
- * validates that the correct arguments are passed to isShape
- * @param {object} obj_to_validate - object to validate
- * @param {object} schema - object to validate against
- * @returns {{ok: boolean, errors: Array}}
- */
-const validate_args = (obj_to_validate, schema) => {
-    let errors = [];
-    let ok = true;
 
-    if (!obj_to_validate) {
-        ok = false;
-        errors.push('no object to validate')
-    }
-
-    if (!schema) {
-        ok = false;
-        errors.push('no schema to validate object against')
-    }
-
-    if (!isObject(obj_to_validate)) {
-        errors.push('subject to validate must be an object');
-        ok = false;
-    }
-
-    if (!isObject(schema)) {
-        errors.push('schema to validate object against is not an object');
-        ok = false;
-    }
-
-    if (isObject(obj_to_validate) && isObject(schema)) {
-
-        let obj_val_empty = objectIsEmpty(obj_to_validate);
-        let schema_empty = objectIsEmpty(schema);
-
-        if (!schema_empty && obj_val_empty) {
-            errors.push('object to validate is empty..');
-            ok = false;
-        }
-    }
-
-    return {ok, errors};
-
-};
 
 
 /**
@@ -298,16 +256,62 @@ const validate_args = (obj_to_validate, schema) => {
  */
 export const isShape = (obj, schema, verbose, log) => {
 
-    if (!log && verbose) {
-        log = () => 'asdf';
-        console.log('log formatter not provided');
-    }
+    // if (!log && verbose) {
+    //     log = () => 'asdf';
+    //     console.log('log formatter not provided');
+    // }
+
+    /**
+     * validates that the correct arguments are passed to isShape
+     * @param {object} obj_to_validate - object to validate
+     * @param {object} schema - object to validate against
+     * @returns {{ok: boolean, errors: Array}}
+     */
+    const validate_args = (obj_to_validate, schema) => {
+        let errors = [];
+        let ok = true;
+
+        if (!obj_to_validate) {
+            ok = false;
+            errors.push('no object to validate')
+        }
+
+        if (!schema) {
+            ok = false;
+            errors.push('no schema to validate object against')
+        }
+
+        if (!isObject(obj_to_validate)) {
+            errors.push('subject to validate must be an object');
+            ok = false;
+        }
+
+        if (!isObject(schema)) {
+            errors.push('schema to validate object against is not an object');
+            ok = false;
+        }
+
+        if (isObject(obj_to_validate) && isObject(schema)) {
+
+            let obj_val_empty = objectIsEmpty(obj_to_validate);
+            let schema_empty = objectIsEmpty(schema);
+
+            if (!schema_empty && obj_val_empty) {
+                errors.push('object to validate is empty..');
+                ok = false;
+            }
+        }
+
+        return {ok, errors};
+    };
+
+
     let {ok, errors} = validate_args(obj, schema);
 
     let warnings = [];
 
     if (!ok) {
-        verbose && log('args are not valid');
+        // verbose && log('args are not valid');
         return {ok, errors};
     }
 
@@ -316,7 +320,7 @@ export const isShape = (obj, schema, verbose, log) => {
     }
 
     const anyCheck = (val, validate) => {
-        verbose && log('any type passes');
+        // verbose && log('any type passes');
     };
 
     let invalid = 'invalid value! ';
@@ -324,7 +328,7 @@ export const isShape = (obj, schema, verbose, log) => {
     const customCheck = (val, validate) => {
         if (validate.custom_validate && isFunction(validate.custom_validate)) {
 
-            verbose && log('evaluating with custom evaluator');
+            // verbose && log('evaluating with custom evaluator');
 
             let cv_result = validate.custom_validate(val);
 
@@ -337,7 +341,7 @@ export const isShape = (obj, schema, verbose, log) => {
             }
 
         } else {
-            verbose && log('custom validator is invalid');
+            // verbose && log('custom validator is invalid');
             errors.push(invalid + 'custom validator is invalid')
         }
     };
@@ -345,7 +349,7 @@ export const isShape = (obj, schema, verbose, log) => {
     const arrayCheck = (val, validate) => {
         if (isArray(val)) {
             if (validate.of && !isEmpty(validate.of)) {
-                verbose && log('is array and has "of" object that is not empty');
+                // verbose && log('is array and has "of" object that is not empty');
                 inspect(val, validate.of);
             }
         } else {
@@ -357,15 +361,15 @@ export const isShape = (obj, schema, verbose, log) => {
     const objectCheck = (val, validate) => {
         if (isObject(val)) {
             if (validate.shape) {
-                verbose && log('value is object and has shape');
+                // verbose && log('value is object and has shape');
 
                 let results = validate_args(val, validate.shape);
 
                 if (results.ok) {
-                    verbose && log('passes arg validation.. inspecting object');
+                    // verbose && log('passes arg validation.. inspecting object');
                     inspect(val, validate.shape);
                 } else {
-                    verbose && log('does not pass arg validation. will not inspect again');
+                    // verbose && log('does not pass arg validation. will not inspect again');
                     errors.concat(results.errors);
                 }
             }
@@ -377,7 +381,7 @@ export const isShape = (obj, schema, verbose, log) => {
     const allOtherCheck = (val, validate) => {
         let type = validate.type.toLowerCase();
         if (typeOf(val) === type) {
-            verbose && log('all other check passed')
+            // verbose && log('all other check passed')
         } else {
             errors.push(invalid + `expected ${type}`);
         }
@@ -386,12 +390,12 @@ export const isShape = (obj, schema, verbose, log) => {
     const oneOfCheck = (val, validate) => {
         if (isArray(validate.one_of)) {
             if (isInArray(val, validate.one_of)) {
-                verbose && log('value found in array');
+                // verbose && log('value found in array');
             } else {
                 errors.push(invalid + 'did not find match in array');
             }
         } else {
-            verbose && log('must provide an array to one_of prop');
+            // verbose && log('must provide an array to one_of prop');
             errors.push('must provide an array to one_of prop')
         }
 
@@ -413,7 +417,7 @@ export const isShape = (obj, schema, verbose, log) => {
                 if (isObject(close_to)) {
                     if (isNumber(close_to.target) && isNumber(close_to.variance)) {
                         if (closeEnough(val, close_to.target, close_to.variance)) {
-                            verbose && log('number is close enough');
+                            // verbose && log('number is close enough');
                         } else {
                             errors.push(`${val} is not close to: ${close_to.target}`);
                         }
@@ -444,19 +448,19 @@ export const isShape = (obj, schema, verbose, log) => {
 
                 if (valid_min && valid_max) {
                     if (isBetween(val, min, max)) {
-                        verbose && log('number is between min and max');
+                        // verbose && log('number is between min and max');
                     } else {
                         errors.push(invalid + 'number not between min and max');
                     }
                 } else if (valid_min) {
                     if (val > min) {
-                        verbose && log('number is greater than min');
+                        // verbose && log('number is greater than min');
                     } else {
                         errors.push(invalid + 'number is not greater than min');
                     }
                 } else if (valid_max) {
                     if (val < max) {
-                        verbose && log('number is less than max');
+                        // verbose && log('number is less than max');
                     } else {
                         errors.push(invalid + 'number is not less than');
                     }
@@ -473,15 +477,15 @@ export const isShape = (obj, schema, verbose, log) => {
 
     const evaluate = (val, validate) => {
 
-        verbose && log('evaluating value: ');
-        verbose && log(val);
-        verbose && log('with this validator: ');
-        verbose && log(validate);
+        // verbose && log('evaluating value: ');
+        // verbose && log(val);
+        // verbose && log('with this validator: ');
+        // verbose && log(validate);
 
         if (isUndefined(val) && validate.type.toLowerCase() !== 'undefined') {
 
             if (validate.required) {
-                verbose && log('missing value');
+                // verbose && log('missing value');
                 errors.push('missing required property');
             }
 
@@ -489,7 +493,7 @@ export const isShape = (obj, schema, verbose, log) => {
 
             if (type_map[validate.type]) {
 
-                verbose && log('has type validation and type is valid');
+                // verbose && log('has type validation and type is valid');
 
                 switch (validate.type.toLowerCase()) {
                     case 'any':
@@ -516,7 +520,7 @@ export const isShape = (obj, schema, verbose, log) => {
                 }
 
             } else {
-                verbose && log('value for type prop is invalid');
+                // verbose && log('value for type prop is invalid');
                 errors.push('value for type prop is invalid')
             }
 
@@ -524,13 +528,12 @@ export const isShape = (obj, schema, verbose, log) => {
 
     };
 
-
     const inspect = (arr_or_obj, against) => {
 
-        verbose && log('inspecting');
+        // verbose && log('inspecting');
 
         if (isObject(arr_or_obj)) {
-            verbose && log('inspecting object');
+            // verbose && log('inspecting object');
             for (let schema_key in against) {
                 let validate = against[schema_key];
                 let obj_val = arr_or_obj[schema_key];
@@ -538,7 +541,7 @@ export const isShape = (obj, schema, verbose, log) => {
             }
         }
         if (isArray(arr_or_obj)) {
-            verbose && log('inspecting array');
+            // verbose && log('inspecting array');
             for (let i = 0; i < arr_or_obj.length; i++) {
                 evaluate(arr_or_obj[i], against);
             }

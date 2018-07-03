@@ -1,5 +1,3 @@
-
-let ls = window.localStorage;
 /*
  * helper function for local storage crud
  */
@@ -11,7 +9,7 @@ export const lsdb = {
      * @returns {Undefined} - returns nothing
      */
     set: (key, val) => {
-        ls.setItem(key, JSON.stringify(val));
+        window.localStorage.setItem(key, JSON.stringify(val));
     },
     /**
      * get a value
@@ -19,8 +17,8 @@ export const lsdb = {
      * @returns {*|Boolean} - false if the value is not there
      */
     get: (key) => {
-        let item = ls.getItem(key);
-        return item !== null ? JSON.parse(item) : false;
+        let item = window.localStorage.getItem(key);
+        return item ? JSON.parse(item) : false;
     },
     /**
      * removes an item from storage
@@ -28,13 +26,13 @@ export const lsdb = {
      * @returns {Undefined} - returns nothing
      */
     destroy: (key) => {
-        ls.removeItem(key);
+        window.localStorage.removeItem(key);
     },
     /**
      * destroys everything in local storage
      * @returns {Undefined} - returns nothing
      */
     destroyAll: () => {
-        ls.clear();
+        window.localStorage.clear();
     },
 };

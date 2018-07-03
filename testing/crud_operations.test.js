@@ -8,20 +8,20 @@ import {
 } from '../src/crud_operations';
 
 
-describe('crud operations', () => {
+    describe('crud operations', () => {
 
-    describe('removeItemFromArray', () => {
-        it('should remove the string item from the array and return the array', () => {
-            const array = ['a', 'c', 'b'];
-            const expected = ['b', 'c'];
+        describe('removeItemFromArray', () => {
+            it('should remove the string item from the array and return the array', () => {
+                const array = ['a', 'c', 'b'];
+                const expected = ['b', 'c'];
 
-            expect(removeItemFromArray('a', array)).toEqual(
-                expect.arrayContaining(expected)
-            )
+                expect(removeItemFromArray('a', array)).toEqual(
+                    expect.arrayContaining(expected)
+                )
 
-        })
+            })
 
-    });
+        });
 
     describe('removeItemFromArrayByIndex', () => {
         it('should remove the item from the array by its index and return the array', () => {

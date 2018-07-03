@@ -1,5 +1,4 @@
 import {type_map, isShape, objectOf, arrayOf} from './isShape'
-import {isString} from "../../dist";
 
 let  log_this = '';
 export const log = (it) => {
@@ -405,10 +404,6 @@ export const tester = () => {
         console.log('************************************************** \n\n\n\n\n ');
 
         let maps_valid = false;
-
-        Object.keys(type_map).forEach((key)=>{
-           // log(key);
-        });
 
 
         const mapsValid = (verbose) => {

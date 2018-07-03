@@ -14,25 +14,6 @@ export const idgen = () => {
     _i_d_counter_ += 1;
     return oldId;
 };
-
-
-/**
- * creates a date string and replaces spaces with dashes
- * used for uniqueID
- * @returns {string} - returns date string with dashes
- */
-const dateStringForId = () => new Date().toString().split(" ").join("-");
-
-/**
- * random number generator used for genRando
- * @returns {String} - random char string
- */
-const s4 = () => {
-    return Math.floor((1 + Math.random()) * 0x10000)
-        .toString(16)
-        .substring(1);
-};
-
 /**
  * generates a ridiculously unique set of characters
  * ...adding a date time at the end makes it almost impossible for collisions
@@ -40,6 +21,7 @@ const s4 = () => {
  * @returns {String} - super unique value string
  */
 export const uniqueID = () => {
+    const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
     return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-        s4() + '-' + s4() + s4() + s4() + '-' + dateStringForId();
+        s4() + '-' + s4() + s4() + s4();
 };

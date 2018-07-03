@@ -5,8 +5,6 @@ import {isTruthy} from "./type_checks";
 /*
     -------- IS EMPTY CHECKS --------------
  */
-
-
 /**
  * checks if an object has any properties /is empty
  * @param {Object} obj - object to check for emptiness

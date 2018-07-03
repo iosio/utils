@@ -1,6 +1,5 @@
 
 import {isString} from "./type_checks";
-import {isInArray} from "./has_checks";
 /*
     ---------- FILTERS ------------------
  */
@@ -19,7 +18,8 @@ export const filterObjArrByProp = (arr, prop, val) => {
         if (isString(item[prop])) {
             return item[prop].toLowerCase().search(val.toLowerCase()) !== -1;
         } else {
-            return item[prop].search(val) !== -1;
+            let value = item[prop] + '';
+            return value.search(val) !== -1;
         }
 
     });
@@ -36,7 +36,8 @@ export const filterArray = (arr, val) => {
         if (isString(item)) {
             return item.toLowerCase().search(val.toLowerCase()) !== -1;
         } else {
-            return item.search(val) !== -1;
+            let value = item + '';
+            return value.search(val) !== -1;
         }
 
     });
@@ -77,33 +78,5 @@ export const sortOrderOfObjArr = (arr, objProp, descend) => {
 
 
 
-/**
- * filters out duplicates in array of strings
- * @param {Array} arr - array to filter
- * @returns {Array} - filtered array
- */
-export const uniquesInArray = (arr) => arr.filter((item, i, ar) => ar.indexOf(item) === i);
-
-
-
-/**
- * returns the items in arr1 that don't exist in arr2
- * @param {Array} arr1 - check these
- * @param {Array} arr2 - for the existence here
- * @returns {Array} - array of items that are in arr1 that don't exist in arr2
- */
-export const itemsInArray1NotInArray2 = (arr1, arr2) => {
-    let notInArry2 = [];
-    for (let i = 0; i < arr1.length; i++) {
-        if (!isInArray(arr1[i], arr2)) {
-            notInArry2.push(arr1[i]);
-        }
-    }
-    if (notInArry2.length > 0) {
-        return notInArry2;
-    } else {
-        return false;
-    }
-};
 
 

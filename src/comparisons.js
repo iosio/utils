@@ -24,11 +24,11 @@ export const closeEnough = (check_num, close_to, thresh) => {
     let is_less_than = false;
     let is_greater_than = false;
 
-    if (check_num > (close_to - thresh)) {
+    if (check_num >= (close_to - thresh)) {
         is_greater_than = true;
     }
 
-    if (check_num < (close_to + thresh)) {
+    if (check_num <= (close_to + thresh)) {
         is_less_than = true;
     }
 
