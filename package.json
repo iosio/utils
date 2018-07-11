@@ -1,6 +1,6 @@
 {
   "name": "@iosio/utils",
-  "version": "1.0.43",
+  "version": "1.0.44",
   "description": "A collection of helpful JavaScript utility functions",
   "main": "lib/index.js",
   "watch": {
@@ -36,7 +36,6 @@
   },
   "author": "iosio",
   "license": "ISC",
-
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
