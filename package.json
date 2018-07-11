@@ -3,12 +3,17 @@
   "version": "1.0.43",
   "description": "A collection of helpful JavaScript utility functions",
   "main": "lib/index.js",
+  "watch": {
+    "copy_to_example": {
+      "patterns": [
+        "src"
+      ],
+      "ignore": "node_modules"
+    }
+  },
   "scripts": {
-    "tester": "node sandbox/tester.js",
-    "babel:sandbox": "cross-env BABEL_ENV=development babel sandbox/src --out-dir sandbox/dist && npm run tester",
-    "clean:sandbox": "./node_modules/.bin/rimraf sandbox/dist",
-    "build:sandbox": "npm run clean:sandbox && npm run babel:sandbox",
-    "sandbox": "npm-watch",
+    "watch:src": "npm-watch",
+    "copy_to_example": "cp -r src/ example/src/@iosio",
     "clean:build": "./node_modules/.bin/rimraf dist",
     "babel": "cross-env BABEL_ENV=production babel src --out-dir lib",
     "build": "npm run clean:build && npm run babel",
@@ -31,14 +36,7 @@
   },
   "author": "iosio",
   "license": "ISC",
-  "watch": {
-    "build:sandbox": {
-      "patterns": [
-        "sandbox/src"
-      ],
-      "ignore": "node_modules"
-    }
-  },
+
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
@@ -69,7 +67,7 @@
     ],
     "testPathIgnorePatterns": [
       "/node_modules/",
-      "/sandbox/",
+      "/example/",
       "/lib/",
       "/coverage/"
     ]
