@@ -1,5 +1,5 @@
+import {isNaN} from "../src/typeOf";
 import {
-    isNaN,
     isUndefined,
     isNull,
     isObject,

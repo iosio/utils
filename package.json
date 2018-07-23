@@ -56,8 +56,7 @@
     ]
   },
   "dependencies": {
-    "dateformat": "^3.0.3",
-    "moment": "^2.22.1"
+    "dateformat": "^3.0.3"
   },
   "jest": {
     "coverageDirectory": "./coverage",

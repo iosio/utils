@@ -1,43 +1,4 @@
-/*
-    --------- TYPE CHECKS AND STUFF ---------
- */
-
-/**
- * tells what type it is. only checks shallow. wont work with NaN
- * @param {*} thing - thing to check
- * @returns {string} - string definition of the primitive
- */
-export const typeOf_shallow = (thing) => {
-    const stringified = Object.prototype.toString.call(thing);
-    const type = stringified.split(' ')[1].slice(0, -1);
-    return type.toLowerCase();
-};
-
-/**
- * determines if a primitive is isNaN
- * A polyfill for isNaN
- * (leverages the unique never-equal-to-itself characteristic of NaN)
- * @param {*} val - any value
- * @returns {Boolean} - returns true if val is not a number
- */
-export const isNaN = function (val) {
-    let n = Number(val);
-    return n !== n;	//eslint-disable-line
-};
-
-/**
- * tells what type it is.
- * NaN is a number but also not a number so check for type number and NaN to return type nan
- * @param {*} thing - thing to check
- * @returns {string} - string definition of the primitive
- */
-export const typeOf = (thing) => {
-    if(isNaN(thing) && typeOf_shallow(thing) === 'number'){
-        return 'nan';
-    }else{
-        return typeOf_shallow(thing);
-    }
-};
+import {typeOf} from "./typeOf";
 
 /**
  * determines if a value is undefined
