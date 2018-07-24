@@ -2,6 +2,7 @@ import React from 'react';
 
 import {uniqueID} from "./@iosio/number_generation";
 import {Eventer} from "./@iosio/eventer";
+import {camelCase} from "./@iosio/camelCase";
 
 const callbacks = {};
 const eventer = Eventer(callbacks);
@@ -26,6 +27,8 @@ console.log('callbacks', callbacks);
 
 eventer.emit('derp', {derp: 'asdf'});
 
+
+console.log(camelCase('oh_hello. there-good_looking'))
 
 // const response_id = '@response-' + 'some_event' + '-' + uniqueID();
 //
