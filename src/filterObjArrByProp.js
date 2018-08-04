@@ -1,4 +1,3 @@
-import {isString} from "../src/type_checks";
 
 /**
  * filters an object array on a property that contains the given value
