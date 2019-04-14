@@ -5,6 +5,8 @@ node_modules
 # testing
 /coverage
 
+# rando
+/scrap
 quicky
 quicky.js
 

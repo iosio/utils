@@ -1,9 +1,9 @@
 # IOSIO utils
 <img src="https://img.shields.io/circleci/project/github/iosio/utils.svg" />
 
-[![Travis][build-badge]][build]
+
 [![npm package][npm-badge]][npm]
-[![Coveralls][coveralls-badge]][coveralls]
+
 
 A collection of helpful JavaScript utility functions
 
