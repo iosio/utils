@@ -1,16 +1,21 @@
-<h1>IOSIO utils</h1>
+# IOSIO utils
+<img src="https://img.shields.io/circleci/project/github/iosio/utils.svg" />
 
-<h4>*Migrating to function per file style</h4>
-<h4>installation</h4> 
-<pre>
-npm i -S @iosio/utils
-</pre>
+[![Travis][build-badge]][build]
+[![npm package][npm-badge]][npm]
+[![Coveralls][coveralls-badge]][coveralls]
 
-<br/>
-or
-<br/>
-<br/>
-<pre>
-yarn add @iosio/utils
-</pre>
+A collection of helpful JavaScript utility functions
 
+```sh
+npm i @iosio/utils
+```
+
+[build-badge]: https://img.shields.io/travis/user/repo/master.png?style=flat-square
+[build]: https://travis-ci.org/user/repo
+
+[npm-badge]: https://img.shields.io/npm/v/npm-package.png?style=flat-square
+[npm]: https://www.npmjs.org/package/npm-package
+
+[coveralls-badge]: https://img.shields.io/coveralls/user/repo/master.png?style=flat-square
+[coveralls]: https://coveralls.io/github/user/repo
