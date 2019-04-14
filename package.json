@@ -1,7 +1,7 @@
 {
-  "name": "utils_",
+  "name": "@iosio/utils",
   "version": "1.0.0",
-  "description": "utils_ React component",
+  "description": "A collection of helpful JavaScript utility functions",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
