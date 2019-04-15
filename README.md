@@ -1,16 +1,8 @@
-<h1>IOSIO utils</h1>
+# IOSIO utils
+<img src="https://img.shields.io/circleci/project/github/iosio/utils.svg?style=flat-square" />
 
-<h4>*Migrating to function per file style</h4>
-<h4>installation</h4> 
-<pre>
-npm i -S @iosio/utils
-</pre>
+A collection of helpful JavaScript utility functions
 
-<br/>
-or
-<br/>
-<br/>
-<pre>
-yarn add @iosio/utils
-</pre>
-
+```sh
+npm i @iosio/utils
+```

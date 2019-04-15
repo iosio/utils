@@ -1,5 +1,6 @@
-/*
+/**
  * helper function for local storage crud
+ * @type {{destroyAll: lsdb.destroyAll, set: lsdb.set, get: (function(String): boolean), destroy: lsdb.destroy}}
  */
 export const lsdb = {
     /**
@@ -18,7 +19,7 @@ export const lsdb = {
      */
     get: (key) => {
         let item = window.localStorage.getItem(key);
-        return item ? JSON.parse(item) : false;
+        return item && item !== 'undefined' ? JSON.parse(item) : false;
     },
     /**
      * removes an item from storage

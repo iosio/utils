@@ -13,5 +13,7 @@ export const isEmpty = (val) => {
     if (typeOf(val) === 'object') {
         return Object.keys(val).length < 1;
     }
-    return typeOf(val) !== 'undefined' && !!val
+    const isTruthy = (value) => (typeOf(value) !== 'undefined') && !!value;
+
+    return !isTruthy(val)
 };

@@ -12,7 +12,7 @@ export const typeOf_shallow = (thing) => Object.prototype.toString.call(thing).s
  * @param {*} val - any value
  * @returns {Boolean} - returns true if val is not a number
  */
-export const isNaN = function (val) {
+const isNaN = function (val) {
     let n = Number(val);
     return n !== n;	//eslint-disable-line
 };
@@ -23,4 +23,4 @@ export const isNaN = function (val) {
  * @param {*} thing - thing to check
  * @returns {string} - string definition of the primitive
  */
-export const typeOf = (thing) => isNaN(thing) && typeOf_shallow(thing) === 'number' ? 'nan' : typeOf_shallow(thing);
+export const typeOf = (thing) => isNaN(thing) && (typeOf_shallow(thing) === 'number') ? 'nan' : typeOf_shallow(thing);
